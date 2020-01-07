@@ -16,6 +16,11 @@ pipeline {
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 '''    
             }
+        stage ('Invoke Tests') {
+            steps {
+                build job: 'QA_Staging_Federation_SSO_For_AWS'
+            }
+        }
         }
     }      
 }
