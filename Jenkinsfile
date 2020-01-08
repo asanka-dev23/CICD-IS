@@ -17,7 +17,7 @@ pipeline {
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 ''' 
             }
-        }*/
+        }
         stage('Running Test Cases') {
             steps {
                 //sh '''
@@ -26,6 +26,6 @@ pipeline {
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta'
                 //''' 
             }
-        }
+        }*/
     }      
 }
