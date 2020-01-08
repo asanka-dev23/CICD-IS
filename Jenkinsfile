@@ -10,7 +10,7 @@ pipeline {
                 '''    
             }
         }
-       /* stage('Applying Puppet to nodes') {
+        stage('Applying Puppet to nodes') {
             steps {
                 sh '''
                     cd /opt/ansible-scripts/
@@ -18,7 +18,7 @@ pipeline {
                 ''' 
             }
         }
-        stage('Running Test Cases') {
+       /* stage('Running Test Cases') {
             steps {
                 //sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
