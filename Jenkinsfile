@@ -10,12 +10,20 @@ pipeline {
                 '''    
             }
         }
-        stage('Applying Puupet to nodes') {
+        stage('Applying Puppet to nodes') {
             steps {
                 sh '''
-                    cd /opt/ansible-scripts/
-                    ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
+                    //cd /opt/ansible-scripts/
+                    //ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 ''' 
+            }
+        }
+        stage('Running Test Cases') {
+            steps {
+                //sh '''
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
+                    
+                //''' 
             }
         }
     }      
