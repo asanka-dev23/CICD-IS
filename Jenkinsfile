@@ -22,7 +22,8 @@ pipeline {
             steps {
                 //sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
-                    
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_ADFS'
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta'
                 //''' 
             }
         }
