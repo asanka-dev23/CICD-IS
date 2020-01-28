@@ -1,7 +1,5 @@
 pipeline {
-environment {
-    BRANCH_NAME = "${env.BRANCH_NAME}"
-}
+
 agent any
 stages{
     stage('Build-Initiator-Info'){
@@ -10,6 +8,9 @@ stages{
             }
     }
     stage('Build') {
+     input{
+    message "Do you want to proceed for Dep?"
+   }    
         steps{
              catchError {
                 sh 'echo "This is build"'
@@ -36,4 +37,4 @@ stages{
               }
         }
   }
-   }
+}
