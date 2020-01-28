@@ -2,21 +2,38 @@ pipeline {
     agent any
     
     stages {
-        stage('Git Pull') {
+        stage('Gitmerge_Puppet_IS_Cloud_Staging') {
             steps {
-                sh '''
+                /*sh '''
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging git_pull.yaml --extra-vars "node=puppet-master"
-                '''    
+                '''  */
+                echo "Running : Git Merge"
             }
+            echo "Successfully Merged"
         }
         stage('Applying Puppet to nodes') {
+            input{
+            message "Do you want to proceed for Applying Puppet?"
+            }
             steps {
-                sh '''
+                catchError {
+                /*sh '''
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
-                ''' 
+                ''' */
+                echo "Running : Applying Puppet"
+                }
             }
+            post {
+                success {
+                    echo 'Compile Stage Successful . . .'
+                }
+                failure {
+                    echo 'Compile stage failed'
+                    error('Stopping early…')
+                }
+            }         
         }
        /* stage('Running Test Cases') {
             steps {
