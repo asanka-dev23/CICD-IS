@@ -10,7 +10,7 @@ pipeline {
                 '''  */
               
             }
-            echo "Successfully Merged"
+            
         }
         stage('Applying Puppet to nodes') {
             input{
