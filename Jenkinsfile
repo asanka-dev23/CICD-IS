@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage('Gitmerge_Puppet_IS_Cloud_Staging') {
+        stage('Gitmerge_IS_Cloud') {
             steps {
                 /*sh '''
                     cd /opt/ansible-scripts/
@@ -21,7 +21,7 @@ pipeline {
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 ''' */
-                echo "Running : Applying Puppet"
+                ech "Running : Applying Puppet"
                 }
             }
             post {
