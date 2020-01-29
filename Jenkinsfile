@@ -8,9 +8,15 @@ pipeline {
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging git_pull.yaml --extra-vars "node=puppet-master"
                 '''  */
+<<<<<<< HEAD
                 echo "Running : Git Merge"
             }
             echo "Successfully Merged"
+=======
+              
+            }
+            
+>>>>>>> c6b62ee01ed9c509e9cad53e18d548d8f1305026
         }
         stage('Applying Puppet to nodes') {
             input{
