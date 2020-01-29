@@ -29,8 +29,13 @@ pipeline {
                     echo 'Compile Stage Successful . . .'
                 }
                 failure {
-                    echo 'Compile stage failed'
+                    echo 'Puppet Applying stage failed'
                     error('Stopping early…')
+                input{
+                message "Do you want to proceed for rolling back"
+                }
+
+
                 }
             }         
         }
