@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Applying Puppet to nodes') {
             input{
-            message "Do you want to proceed for Applying Puppet?"
+                message "Do you want to proceed for Applying Puppet?"
             }
             steps {
                 catchError {
@@ -31,11 +31,9 @@ pipeline {
                 failure {
                     echo 'Puppet Applying stage failed'
                     error('Stopping early…')
-                input{
+            input{
                 message "Do you want to proceed for rolling back"
-                }
-
-
+            }
                 }
             }         
         }
