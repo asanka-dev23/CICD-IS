@@ -13,8 +13,6 @@ pipeline {
         }
         stage('Puppet Applying') {
 
-            
-        
             steps {
                 catchError {
                 /*sh '''
@@ -41,27 +39,23 @@ pipeline {
         stage('Running Test Cases') {
           
             steps {
+                
+                input message: "Do you want to run QA_Staging_Federation_SSO_For_AWS ?"
+                echo 'Running Test Case QA_Staging_Federation_SSO_For_AWS '
                 /*sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
-                 
-                ''' */
-                input message: "Do you want to run QA_Staging_Federation_SSO_For_AWS ?"
-                echo 'Running Test Cases'
-            }
-            steps {
-                /*sh '''
-                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_ADFS' 
                 ''' */
                 input message: "Do you want to run QA_Staging_Federation_SSO_With_ADFS ?"
-                echo 'Running Test Cases'
-            }
-            steps {
-                /*sh '''
-                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta' 
-                 
+                echo 'Running Test Case QA_Staging_Federation_SSO_With_ADFS'
+                 /*sh '''
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_ADFS' 
                 ''' */
                 input message: "Do you want to run QA_Staging_Federation_SSO_With_Okta ?"
-                echo 'Running Test Cases'
+                echo 'Running Test Case QA_Staging_Federation_SSO_With_Okta'
+                 /*sh '''
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta' 
+                ''' */
+
             }
         }
     }      
