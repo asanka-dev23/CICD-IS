@@ -12,8 +12,8 @@ pipeline {
             }
         }
         stage('Puppet Applying') {
+
             
-            input message:'Do you want to proceed for Applying Puppet?(Click "Proceed to continue)'
         
             steps {
                 catchError {
@@ -21,6 +21,7 @@ pipeline {
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 ''' */
+                input message:'Do you want to proceed for Applying Puppet?(Click "Proceed to continue)'
                 ech "Running : Applying Puppet"
                 }
             }
