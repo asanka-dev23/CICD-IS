@@ -32,7 +32,7 @@ pipeline {
                     /*echo 'Puppet Applying stage failed'*/
                     error('Puppet Applying stage failed')
                 }
-            }
+            /*}
             input{
                 message "Do you want to proceed for rolling back"
             }         
