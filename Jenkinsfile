@@ -20,7 +20,7 @@ pipeline {
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
                 ''' */
                 input message:'Do you want to proceed for Applying Puppet?'
-                ech "Running : Applying Puppet"
+                echo "Running : Applying Puppet"
                 }
             }
             post {
