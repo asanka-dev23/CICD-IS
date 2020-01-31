@@ -39,9 +39,7 @@ pipeline {
        
         }
         stage('Running Test Cases') {
-            input {
-                message "Do you want to run Test Cases ?"
-            }   
+          
             steps {
                 /*sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
