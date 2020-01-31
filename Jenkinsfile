@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages {
-        stage('Gitmerge_IS_Cloud') {
+        stage('Gitmerge') {
             steps {
                 /*sh '''
                     cd /opt/ansible-scripts/
@@ -11,10 +11,10 @@ pipeline {
                 echo "Running : Git Merge"
             }
         }
-        stage('Applying Puppet to nodes') {
-            input{
-                message "Do you want to proceed for Applying Puppet?"
-            }
+        stage('Puppet Applying') {
+            
+            input message:'Do you want to proceed for Applying Puppet?(Click "Proceed to continue)'
+        
             steps {
                 catchError {
                 /*sh '''
