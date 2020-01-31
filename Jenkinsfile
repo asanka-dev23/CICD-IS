@@ -31,20 +31,24 @@ pipeline {
                 failure {
                     /*echo 'Puppet Applying stage failed'*/
                     error('Puppet Applying stage failed')
+                    echo 'Rolling Back'
                 }
             }
-            /*input{
-                message "Do you want to proceed for rolling back"
-            }  */       
+       
         }
-       /* stage('Running Test Cases') {
+        stage('Running Test Cases') {
+            input{
+                message "Do you want to run Test Cases"
+            }
             steps {
-                //sh '''
+                /*sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_ADFS'
-                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta'
-                //''' 
+                    build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta' 
+                 
+                ''' */
+                echo 'Running Test Cases'
             }
-        }*/
+        }
     }      
 }
