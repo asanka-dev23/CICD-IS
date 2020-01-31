@@ -47,14 +47,14 @@ pipeline {
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
                  
                 ''' */
-                input message "Do you want to run QA_Staging_Federation_SSO_For_AWS ?"
+                input message: "Do you want to run QA_Staging_Federation_SSO_For_AWS ?"
                 echo 'Running Test Cases'
             }
             steps {
                 /*sh '''
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_ADFS' 
                 ''' */
-                input message "Do you want to run QA_Staging_Federation_SSO_With_ADFS ?"
+                input message: "Do you want to run QA_Staging_Federation_SSO_With_ADFS ?"
                 echo 'Running Test Cases'
             }
             steps {
@@ -62,7 +62,7 @@ pipeline {
                     build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_With_Okta' 
                  
                 ''' */
-                input message "Do you want to run QA_Staging_Federation_SSO_With_Okta ?"
+                input message: "Do you want to run QA_Staging_Federation_SSO_With_Okta ?"
                 echo 'Running Test Cases'
             }
         }
