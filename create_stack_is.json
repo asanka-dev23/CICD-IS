@@ -1,0 +1,74 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+  
+    "Description" : "AWS CloudFormation Template IS CI/CD",
+  
+    "Parameters" : {
+        "Keypair" : {
+            "Description" : "Key-pair",
+            "Type" : "AWS::EC2::KeyPair::KeyName",
+            "Default": "mc-keypair"
+      },
+        "AMI" : {
+            "Description" : "API AMI ID",
+            "Type" : "AWS::EC2::Image::Id",
+            "Default": "ami-9837d8f5"
+            
+        },
+        "Environment": {
+            "Description": "Identity Cloud 5.8.0 Staging Environment",
+            "Type": "String",
+            "Default": "Staging"
+        }
+    },
+  
+    "Resources" : {
+  
+        "StagIdentity01" : {
+            "Type" : "AWS::EC2::Instance",
+            "Properties" : {
+            "InstanceType" : "t2.small",
+            "IamInstanceProfile": "WSO2_Instance",
+            "KeyName"  : {"Ref": "Keypair"},
+            "ImageId" : {"Ref": "AMI"},
+            "NetworkInterfaces" : [{
+                "GroupSet"                 : ["sg-159da368"],
+                "AssociatePublicIpAddress" : "false",
+                "DeviceIndex"              : "0",
+                "DeleteOnTermination"      : "true",
+                "SubnetId"                 : "subnet-09eae96e9241f6af1"
+            }],
+            "BlockDeviceMappings" : [
+            {
+                "DeviceName" : "/dev/sda1",
+                "Ebs" : {
+                "VolumeType" : "gp2",
+                "VolumeSize" : "25"
+                }
+            },
+            {
+                "DeviceName" : "/dev/sdk",
+                "Ebs" : {
+                "VolumeType" : "gp2",
+                "VolumeSize" : "25"
+                }
+            }],
+            "Tags" : [
+            { "Key" : "Name", "Value" : "STAGING-IDENTITY58-01-Test" },
+            { "Key" : "Environment", "Value" : {"Ref":"Environment"} }
+            ]
+            
+            }
+        }
+    },
+
+    "Outputs" : {
+        "PrivateIp" : {
+            "Description" : "Server Private IP",
+            "Value" : { "Fn::GetAtt" : ["StagIdentity01", "PrivateIp"]},
+            "Export" : {
+                "Name" : {"Fn::Sub": "${AWS::StackName}-PVTIP" }
+              }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Hello World! example
+Parameters:
+  ExportStackName:
+    Description: IS-CICD-Stack
+    Type: String
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: 9837d8f5
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap [RegionMap, !Ref 'AWS::Region', AMI]
+      InstanceType: t2.micro
+      NetworkInterfaces:
+      - AssociatePublicIpAddress: 'false'
+        DeviceIndex: '0'
+        GroupSet: 
+        - Fn::ImportValue: !Sub '${ExportStackName}-SecurityGroup'
+        SubnetId:
+          Fn::ImportValue: !Sub '${ExportStackName}-Subnet'
+      Tags:
+      - Key: Name
+        Value: STAGING-IDENTITY58-01-Test
+      - Key: Environment
+        Value: STAGING-IDENTITY58-01-Test  
+      UserData:
+        'Fn::Base64': !Sub |
+          #!/bin/bash -x
+          yum install -y httpd
+          cd /var/www/html
+          echo "<html><body>Hello World!</body></html>" > index.html
+          service httpd start
+Outputs:
+  HelloWorldURL:
+    Description: The URL pointing to Hello World!.
+    Value: !Sub 'http://${EC2Instance.PublicIp}'
