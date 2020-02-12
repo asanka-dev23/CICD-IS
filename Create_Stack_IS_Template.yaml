@@ -13,6 +13,10 @@ Parameters:
     Description: Identity Cloud 5.8.0 Staging Environment
     Type: String
     Default: Staging
+  IAMRole:
+    Description: EC2 attached IAM role
+    Type: String
+    Default: CloudWatchAgentAdminRole
 Resources:
   StagIdentity01:
     Type: 'AWS::EC2::Instance'
@@ -42,11 +46,42 @@ Resources:
           Value: STAGING-IDENTITY58-01-Test
         - Key: Environment
           Value: !Ref Environment
+  StagIdentity02:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.small
+      IamInstanceProfile: WSO2_Instance
+      KeyName: !Ref Keypair
+      ImageId: !Ref AMI
+      NetworkInterfaces:
+        - GroupSet:
+            - sg-159da368
+          AssociatePublicIpAddress: 'false'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: subnet-09eae96e9241f6af1
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeType: gp2
+            VolumeSize: '25'
+        - DeviceName: /dev/sdk
+          Ebs:
+            VolumeType: gp2
+            VolumeSize: '25'
+      Tags:
+        - Key: Name
+          Value: STAGING-IDENTITY58-02-Test
+        - Key: Environment
+          Value: !Ref Environment        
 Outputs:
-  PrivateIp:
+  PrivateIp_1:
     Description: Server Private IP
     Value: !GetAtt 
       - StagIdentity01
       - PrivateIp
-    Export:
-      Name: !Sub '${AWS::StackName}-PVTIP'
+  PrivateIp_2:
+    Description: Server Private IP
+    Value: !GetAtt 
+      - StagIdentity02
+      - PrivateIp
