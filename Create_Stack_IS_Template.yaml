@@ -75,12 +75,12 @@ Resources:
         - Key: Environment
           Value: !Ref Environment        
 Outputs:
-  PrivateIp_1:
+  PrivateIp1:
     Description: Server Private IP
     Value: !GetAtt 
       - StagIdentity01
       - PrivateIp
-  PrivateIp_2:
+  PrivateIp2:
     Description: Server Private IP
     Value: !GetAtt 
       - StagIdentity02
