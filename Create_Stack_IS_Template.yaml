@@ -27,7 +27,10 @@ Resources:
       ImageId: !Ref AMI
       NetworkInterfaces:
         - GroupSet:
-            - sg-c0603ba5, sg-ba4fe1c0, sg-ca603baf, sg-cb603bae
+            - sg-c0603ba5
+            - sg-ba4fe1c0
+            - sg-ca603baf
+            - sg-cb603bae
           AssociatePublicIpAddress: 'false'
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
