@@ -9,7 +9,7 @@ pipeline {
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging git_pull.yaml --extra-vars "node=puppet-master"
                 '''  */
-                // echo $cicdis_PrivateIp1
+                 echo "Running : Create Stack"
             }
         }
         stage('Puppet Applying') {
