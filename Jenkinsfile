@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo "Running : Create Stack"
                  sh '''
-                        build job: 'CreateStack-ISCICD'
+                        def job = build job: 'CreateStack-ISCICD'
                     '''     
                 echo $cicdis_PrivateIp1 
                 /*sh '''
