@@ -4,20 +4,22 @@ pipeline {
     stages {
         stage('Create Stack') {
             steps {
-                 sh '''
-                        build '/CreateStack-ISCICD'
-                    ''' 
+                 
                 /*sh '''
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging git_pull.yaml --extra-vars "node=puppet-master"
                 '''  */
-                echo $cicdis_PrivateIp1
+                // echo $cicdis_PrivateIp1
             }
         }
         stage('Puppet Applying') {
 
             steps {
                 catchError {
+                sh '''
+                        build '/CreateStack-ISCICD'
+                    '''     
+                echo $cicdis_PrivateIp1    
                 /*sh '''
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging puppet_apply.yaml --extra-vars "node=identity-server"
