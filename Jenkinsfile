@@ -2,13 +2,16 @@ pipeline {
     agent any
     
     stages {
-        stage('Gitmerge') {
+        stage('Create Stack') {
             steps {
+                 sh '''
+                        build '/CreateStack-ISCICD'
+                    ''' 
                 /*sh '''
                     cd /opt/ansible-scripts/
                     ansible-playbook -i staging git_pull.yaml --extra-vars "node=puppet-master"
                 '''  */
-                echo "Running : Git Merge"
+                echo $cicdis_PrivateIp1
             }
         }
         stage('Puppet Applying') {
