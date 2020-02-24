@@ -5,10 +5,10 @@ pipeline {
         stage('Create Stack') {
             steps {
                 echo "Running : Create Stack"
-                 sh '''
-                         build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
+                
+                build job: 'create-stack'
                         
-                    '''     
+                
                 echo $cicdis_PrivateIp1 
                 /*sh '''
                     cd /opt/ansible-scripts/
