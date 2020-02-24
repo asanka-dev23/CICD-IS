@@ -6,7 +6,8 @@ pipeline {
             steps {
                 echo "Running : Create Stack"
                  sh '''
-                        def job = build job: 'CreateStack-ISCICD'
+                         build '/Cloud_Tests/Staging/QA_Staging_Federation_SSO_For_AWS'
+                        
                     '''     
                 echo $cicdis_PrivateIp1 
                 /*sh '''
